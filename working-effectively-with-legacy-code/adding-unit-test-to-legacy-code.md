@@ -80,6 +80,9 @@ Bottom-up
 
 ### Reference
 Working Effectively with legacy code - Michael Feathers
+
 Test-Driven Development for Embbeded C - James W. Growning
+
 Growing Object-oriented software guided by tests - Steve Freeman
+
 Domain Driven Design - Eric Evans
