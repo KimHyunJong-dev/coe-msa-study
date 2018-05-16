@@ -31,5 +31,3 @@ int last_account_no = -1;
 #endif
 ```
 - Preprocesser를 이용하여 db_update 함수를 대체 할 수 있다.
-
-[Chapter 4로 이동](https://github.com/SDSACT/microservice-coe-refactoring/wiki/%5BWELC%5D-Chapter-4:-The-Seam-Model)

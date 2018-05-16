@@ -108,5 +108,3 @@ public class CustomSpreadsheet extends Spreadsheet
 }
 ```
 - protected 메소드로 변경 하여 override를 통해 변경이 가능하다.
-
-[Chapter 4로 이동](https://github.com/SDSACT/microservice-coe-refactoring/wiki/%5BWELC%5D-Chapter-4:-The-Seam-Model)

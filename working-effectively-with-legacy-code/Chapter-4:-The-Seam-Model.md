@@ -58,12 +58,12 @@ class TestingAsyncSslRec : public CAsyncSslRec
 - 전역 함수와 동일한 이름의 멤버 함수를 생성하고, 새로 생성한 함수에서 전역 함수를 호출한다. 테스트코드에서는 해당 멤버 함수를 구현하여 전역 함수 호출을 회피한다.
 - 이렇게 테스트 대상 함수의 원래 동작을 대체하여 의존성을 끊을수있는 부분을 Seam(이음새)라고 합니다.
 ### Seam Types
-- [Preprocessing Seams](https://github.com/SDSACT/microservice-coe-refactoring/wiki/%5BWELC%5D-Chapter-4:-The-Seam-Model-Types---1.-Preprocessing-Seams)
-- [Link Seams](https://github.com/SDSACT/microservice-coe-refactoring/wiki/%5BWELC%5D-Chapter-4:-The-Seam-Model-Types---2.-Link-Seams)
-- [Object Seams](https://github.com/SDSACT/microservice-coe-refactoring/wiki/%5BWELC%5D-Chapter-4:-The-Seam-Model-Types---3.-Object-Seams)
+- [Preprocessing Seams](./Chapter-4:-The-Seam-Model-Types---1.-Preprocessing-Seams.md)
+- [Link Seams](./Chapter-4:-The-Seam-Model-Types---2.-Link-Seams.md)
+- [Object Seams](./Chapter-4:-The-Seam-Model-Types---3.-Object-Seams.md)
 ### 올바른 Seams Type 선택
 - 위 예제코드는 다양한 종류의 Seams를 적용 할 수 있다.
-  - Link : PostReceiveError는 전역 함수로서 Stub function으로 된 라이브러리를 생성하여 Link단계에서 행동을 변경 할 수 있다. 
+  - Link : PostReceiveError는 전역 함수로서 Stub function으로 된 라이브러리를 생성하여 Link단계에서 행동을 변경 할 수 있다.
   - Preprocessing : PostReceiveError함수를 대체하는 define macro가 작성된 헤더 파일을 include하여 행동을 변경할 수 있다.
   - Object : 위 예제에서 설명한 방법이 Object Seam으로 행동을 변경 하는 것 이다.
 - 일반적으로 객체지향 언어의 경우 Object Seams가 최선의 선택 이다. Preprocessing seams와 Link seams는 유용해 보이지만 Object seams에 비해 명확하지 않다.
