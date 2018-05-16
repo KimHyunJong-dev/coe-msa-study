@@ -6,25 +6,25 @@
 - 소프트웨어 변경이 필요한 4가지 이유
 - 위험한 변경
 
-###### Chapter2 : 피드백을 통한 작업
-유닛 테스트는 무엇인가?
-고수준 테스트
-테스트 커버리지
-레거시 코드 변경 알고리듬
+###### [Chapter2 : 피드백을 통한 작업](Chapter-2:-Working-with-Feedback.md)
+- 유닛 테스트는 무엇인가?
+- 고수준 테스트
+- 테스트 커버리지
+- 레거시 코드 변경 알고리듬
 
-###### Chapter3 : 감지와 분리
-Fake Collaborators
+###### [Chapter3 : 감지와 분리](Chapter-3:-Sensing-and-Separation.md)
+- Fake Collaborators
 
-###### Chapter4 : Seam 모델
-많은 양의 텍스트
-Seam
-Seam 종류
+###### [Chapter4 : Seam 모델](Chapter-4:-The-Seam-Model.md)
+- 많은 양의 텍스트
+- Seam
+- Seam 종류
 
-###### Chapter5 : 도구
-리팩토링 자동화 도구
-Mock 객체
-유닛 테스트 코드
-일반 테스트 코드
+###### [Chapter5 : 도구](Chapter-5:-Tools.md)
+- 리팩토링 자동화 도구
+- Mock 객체
+- 유닛 테스트 코드
+- 일반 테스트 코드
 
 #### Part II : 소프트웨어 변경
 
