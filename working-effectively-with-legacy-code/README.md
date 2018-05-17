@@ -85,5 +85,5 @@ Characterization Test 작성을 위한 방법
 
 
 ### References
-[Adding Unit Test To Legacy Code](./adding-unit-test-to-legacy-code.md)
-[Working Effectively With Legacy Code](https://github.com/bjut-hz/E-Books/blob/master/software%20engineering/Working%20Effectively%20with%20Legacy%20Code.pdf)
+- [Adding Unit Test To Legacy Code](./adding-unit-test-to-legacy-code.md)
+- [Working Effectively With Legacy Code](https://github.com/bjut-hz/E-Books/blob/master/software%20engineering/Working%20Effectively%20with%20Legacy%20Code.pdf)
