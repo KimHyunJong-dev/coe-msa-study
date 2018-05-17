@@ -67,7 +67,8 @@ Contract Test 수행(Pact Broker사용)
 - Dev deploy and create swagger docs  
 artifact를 배포 하고 API 관련 문서를 생성
 
-
+> Pipeline 스크립트는 아래 메뉴에서 참고하고 생성 가능  
+Jenkins > job > pipeline syntext
 ```
     pipeline {
        tools{
@@ -140,8 +141,10 @@ artifact를 배포 하고 API 관련 문서를 생성
      }
 ```
 
-> Pipeline 스크립트는 아래 메뉴에서 참고하고 생성 가능  
-Jenkins > job > pipeline syntext
-## 4. Contract Test / Nexus / Pact Broker
+## 4. Pact(Contract Test) / Nexus / Pact Broker
+Client Driven Test 로서 Client가 필요로 하는 API 항목에 대하여 Contract(Pact)를 생성하고, 이에 대한 Provider의 적합 여부를 Test 한다.
 
+<img src="./images/consumerPact.png" alt="drawing" style="width: 800px;"/>
+
+<img src="./images/providerPact.png" alt="drawing" style="width: 800px;"/>
 ## 5. Ansible
