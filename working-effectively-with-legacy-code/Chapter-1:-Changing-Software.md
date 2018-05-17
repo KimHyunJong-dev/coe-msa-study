@@ -6,6 +6,12 @@
 - 디자인 개선 (리팩토링)
 - 자원 사용 최적화
 ### 변경점에 따른 차이
-![](https://user-images.githubusercontent.com/29725145/39415418-2fb58cde-4c7e-11e8-8187-5d4ea083f3e9.png)
+| | Adding a Feature | Fixing a Bug | Refactoring | Optimizing |
+|---|---|---|---|---|
+|Structure|Changes|Changes|Changes|-|
+|New Functionality|Changes|-|-|-|
+|Functionality|-|Changes|-|-|
+|Resource Usage|-|-|-|Changes|
+
 ### 위험한 변경
 - 유닛테스트의 커버가 필요하다.
