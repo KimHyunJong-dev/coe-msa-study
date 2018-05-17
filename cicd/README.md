@@ -68,6 +68,7 @@ Contract Test 수행(Pact Broker사용)
 artifact를 배포 하고 API 관련 문서를 생성
 
 
+```
     pipeline {
        tools{
            maven "M3"
@@ -137,6 +138,8 @@ artifact를 배포 하고 API 관련 문서를 생성
          }
        }
      }
+```
+
 > Pipeline 스크립트는 아래 메뉴에서 참고하고 생성 가능  
 Jenkins > job > pipeline syntext
 ## 4. Contract Test / Nexus / Pact Broker
