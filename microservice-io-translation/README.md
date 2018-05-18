@@ -19,16 +19,20 @@
 
 ### 마이크로서비스 어플리케이션 예제
 Want to see an example? Check out Chris Richardson's Money Transfer and Kanban board examples.
+
 [See code](http://eventuate.io/exampleapps.html)
 
 ### 마이크로서비스 사례 : 누가 마이크로서비스를 사용하고 있을까?
 Many companies are either using microservices or considering using them. Read the case studies...
+
 [Learn more](http://microservices.io/articles/whoisusingmicroservices.html)
 
 ### 학습자료 - O'Reilly: event-driven microservices
+
 [Learn about patterns for developing, deploying and refactoring microservices.](http://shop.oreilly.com/product/0636920047551.do)
 
 ### 마이크로서비스 아키텍처 패턴
+
 [마이크로서비스 패턴을 적용하는 방법](./how-to-apply-the-patterns.md)
 
 핵심 패턴
@@ -49,7 +53,7 @@ Many companies are either using microservices or considering using them. Read th
 
 횡단 관심사 (Cross cutting concerns)
 - 마이크로서비스 샤시
-- 외부에서 관리되는 환경설정
+- [외부화된 환경설정](./externalized-configuration.md)
 
 통신 방식
 - 원격 프로시져 호출
