@@ -52,7 +52,7 @@ Many companies are either using microservices or considering using them. Read th
 - 서비스 배포 플랫폼
 
 횡단 관심사 (Cross cutting concerns)
-- 마이크로서비스 샤시
+- [마이크로서비스 섀시](./microservice-chassis.md)
 - [외부화된 환경설정](./externalized-configuration.md)
 
 통신 방식
@@ -94,7 +94,7 @@ Many companies are either using microservices or considering using them. Read th
 
 Observablility
 - 로그 통합 수집
-- - Application metrics
+- Application metrics
 - Audit logging
 - Distributed tracing
 - Exception tracking

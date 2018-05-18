@@ -1,7 +1,7 @@
 # 패턴 : 외부화된 환경설정
 ### 상황
 어플리케이션은 일반적으로 다양한 인프라와 써드파티 서비스를 사용한다.
-인프라 서비스는 서비스 등록, 메시지 브로커, 데이터베이스 등을 예로 들 수 있다.
+인프라 서비스는 서비스 등록, 메시지 브로커, 데이터베이스 서버 등을 예로 들 수 있다.
 써드파티 서비스는 결제, 이메일, 메시징 서비스 등을 예로 들 수 있다.
 
 ### 문제점
@@ -17,3 +17,40 @@
 서비스 인스턴스 구동시, 외부 레파지토리에서 그러한 환경설정 정보를 읽어오도록 한다.
 
 ### 예제
+외부화된 환경설정을 이용하여 스프링 부트 어플리케이션은 운영 체제의 환경 변수, 환경 변수 파일, 커맨드라인 인자 등 다양한 소스에서 값을 참조한다.
+이 값은 스프링 어플리케이션 컨텍스트 내에서 사용 가능하다.
+
+아래의 [마이크로서비스 예제 어플리케이션]()의 **RegistrationServiceProxy** 는 **user_registration_url** 변수를 읽어와 사용하는 Scala 코드 예제이다.
+
+```java
+@Component
+class RegistrationServiceProxy @Autowired()(restTemplate: RestTemplate) extends RegistrationService {
+
+  @Value("${user_registration_url}")
+  var userRegistrationUrl: String = _
+```
+
+아래 **docker-compose.yml** 파일은 환경 변수의 값들을 제공하는 예제이다.
+
+```yaml
+web:
+  image: sb_web
+  ports:
+    - "8080:8080"
+  links:
+    - eureka
+  environment:
+    USER_REGISTRATION_URL: http://REGISTRATION-SERVICE/user
+```
+
+**REGISTRATION-SERVICE** 는 서비스의 논리적 이름이며 클라이언트측 탐지에 사용된다.
+
+### 결론
+장점
+- 어플리케이션이 수정 및 컴파일 없이 다양한 환경에서 작동한다.
+
+문제점
+- 어플리케이션이 환경설정을 참조하여 배포될 때 기대했던 것과 일치하는지 어떻게 알 수 있을까?
+
+### 관련 패턴
+- 서비스 탐지 패턴(서버측 서비스 탐지, 클라이언트측 서비스 탐지)을 통해 특정 서비스가 다른 어플리케이션 서비스의 네트워크 상 위치를 참조하는 방법 관련된 문제를 해결할 수 있다.
