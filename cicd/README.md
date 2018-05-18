@@ -68,7 +68,10 @@ Contract Test 수행(Pact Broker사용)
 artifact를 배포 하고 API 관련 문서를 생성
 
 > Pipeline 스크립트는 아래 메뉴에서 참고하고 생성 가능  
-Jenkins > job > pipeline syntext
+Jenkins > job > pipeline syntext   
+
+> 프로젝트 내에 Jenkinsfile 이라는 이름으로 스크립트 생성하여 사용할 수도 있다.
+
 ```
     pipeline {
        tools{
