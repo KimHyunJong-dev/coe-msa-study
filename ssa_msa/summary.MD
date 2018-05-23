@@ -114,11 +114,13 @@ https://www.lagomframework.com/
 
 
 ##### Kafka vs rabbitmq
+```
 rabbitmq는 only broker. start -> end 전송에 대한 것만 시간이 얼마나 걸리든 guarantee함 . 실시간과 replication(되긴 하지만 초기 설계 시작은 아님) X
    -> kafka는 stream 처리에 + broker (실시간 처리해야하니까 replication & distributed 가능하도록)
    -> stream 처리는 pipeline에서. topic은 변경되지 않지만. 다른 topic으로 전달되고 -> 전달되고의 일련의 과정을 가짐
    -> review를 pipeline에 넣었을때, pipeline내에서 각각의 lib를 거쳐 결과는 여러가지 topic으로 나올 수 있음 
    -> why kafka? 내가 브로커만 사용하더라도 kafka를 사용하는게 맞다. 왜냐면 항상 실시간 처리에 대한 요구가 있으니까.
+```
 
 
 
