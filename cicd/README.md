@@ -151,3 +151,42 @@ Client Driven Test 로서 Client가 필요로 하는 API 항목에 대하여 Con
 
 <img src="./images/providerPact.png" alt="drawing" style="width: 800px;"/>
 ## 5. Ansible
+원격지 서버에 대하여 서비스 설치, 패키지 배포 등의 작업을 수행한다.   
+한번 정의 된 작업에 대하여 재사용이 용이하다.
+### 대상 호스트 정의
+/etc/ansible/hosts
+```
+mail.example.com  
+
+[webservers]  
+foo.example.com  
+bar.example.com  
+
+[dbservers]  
+one.example.com  
+two.example.com  
+three.example.com  
+```
+### Play book(작업들이 정의 된 파일)
+```
+- hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+  - name: ensure apache is at the latest version
+    yum: name=httpd state=latest
+  - name: write the apache config file
+    template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+    notify:
+    - restart apache
+  - name: ensure apache is running (and enable it at boot)
+    service: name=httpd state=started enabled=yes
+  handlers:
+    - name: restart apache
+      service: name=httpd state=restarted  
+```
+
+### Ansible Galaxy
+Palybooks portal
