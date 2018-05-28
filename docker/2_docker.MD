@@ -113,34 +113,34 @@ $ docker history ubuntu_nano    이미지 변경사항 확인
 - CMD : 컨테이너 생성 시점 명령어 ex) CMD ["echo $PATH"]
 - ENTRYPOINT : CMD와 비슷. run or start 될 때 실행
 
-### 도커에서 환경변수 설정
+#### 도커에서 환경변수 설정
 - docker run --env sample=/sample --name=ubuntu ubuntu
 - dockerfile : ENV sample=/sample
 
-### 포트 노출
+#### 포트 노출
 - Dockerfile : EXPOSE 80 (container port)
 
 - 컨테이너의 80번 포트와 호스트의 80번 포트 연결
   - 외부에서 80으로 접근하면 컨테이너의 80으로 연결(포트포워딩)
   - docker run -p 80:80 --name=ubuntu ubuntu
 
-### 호스트의 파일을 이미지 생성시 추가(복사)
+#### 호스트의 파일을 이미지 생성시 추가(복사)
 - Dockerfile
   - ADD ~/sample.txt /sample.txt
 
-### RUN/CMD/ENTRYPOINT 수행하기 전 사용자계정 지정
+#### RUN/CMD/ENTRYPOINT 수행하기 전 사용자계정 지정
 - Dockerfile : USER user2
 
-### RUN/CMD/ENTRYPOINT 수행하기 전 폴더 지정
+#### RUN/CMD/ENTRYPOINT 수행하기 전 폴더 지정
 - Dockerfile : WORKDIR ~/sample (~/sample 폴더로 변경해서 명령어 수행)
 
-### 볼륨연결 (컨테이너의 폴더와 호스트의 물리폴더 간 연결)
+#### 볼륨연결 (컨테이너의 폴더와 호스트의 물리폴더 간 연결)
 - Dockerfile : VOLUME /download (컨테이너 폴더)
                VOLUME ["/data","/sample"]
 - 물리폴더 ~/Downloads를 컨테이너의 /download 폴더로 연결
 - docker run --name=ubuntu ubuntu -v ~/Downloads:/download
 
-### 도커 컨테이너 간 연결
+#### 도커 컨테이너 간 연결
 - mysql 컨테이너 실행 : docker run ~~~ --name=mysql mysql
 - 우분투 컨테이너 실행 : docker run --name ubuntu -d --link mysql:mysql ubuntu
 
