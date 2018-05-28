@@ -50,6 +50,7 @@
   - LXD는 Container "Hypervisor" (도커와 보완관계)
 
 
+
 ## 도커의 설치 및 활용
 ```
 $ docker search ubuntu    이미지 검색
@@ -175,4 +176,32 @@ $ docker exec -it sample_ubuntu bash
 $ docker run --name=ubuntu --link db:db ubuntu
 # apt-get install mysql-client
 # mysql -h(호스트 ip 지정) db -uroot -p
+```
+
+### Dockerfile Sample
+Dockerfile : 오픈자바 SSH Hadoop 설치
+```
+FROM ubuntu:latest
+MAINTAINER sury <sury@gmail.com>
+
+RUN apt-get update
+RUN apt-get install –y openjdk-8-jdk
+
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV CLASSPATH=$JAVA_HOME/lib/*:.
+ENV PATH=$PATH:$JAVA_HOME/bin
+
+RUN apt-get install –y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo ‘root:kitri’ | chpasswd
+RUN sed –i ‘s/PermitRootLogin prohibit-password/PermitRootLogin yes/’ /etc/ssh/sshd_config
+RUN sed –i ‘s/PermitRootLogin without-password/PermitRootLogin yes/’ /etc/ssh/sshd_config
+EXPOSS 22
+CMD [“/usr/sbin/sshd”, “-D”]
+
+RUN wget http://archive.apache.org/dist/hadoop/common/hadoop-1.2.1/hadoop-1.2.1.tar.gz
+RUN tar xvfz hadoop-1.2.1.tar.gz
+
+ENV HADOOP_HOME=/hadoop-1.2.1
+ENV PATH=$PATH:$HADOOP_HOME/sbin
 ```
