@@ -190,3 +190,32 @@ three.example.com
 
 ### Ansible Galaxy
 Palybooks portal
+
+## 5. Maven deploy to Nexux
+### maven help plugin
+maven help plugin을 사용하여 pom.xml에 정의 된 artifact 정보 사용 가능
+[자세히](https://maven.apache.org/plugins/maven-help-plugin/)  
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-help-plugin</artifactId>
+</plugin>
+```
+
+mvn deploy 실행 예시  
+(Nexus 로그인을 설정 파일이 MVN_SETTING으로 jenkins에 등록되어 있어야 함)
+```sh
+A_ID=`mvn help:evaluate -Dexpression="project.artifactId" 2> /dev/null | grep -Ev '^\['`
+A_VER=`mvn help:evaluate -Dexpression="project.version" 2> /dev/null | grep -Ev '^\['`
+A_PACK=`mvn help:evaluate -Dexpression="project.packaging" 2> /dev/null | grep -Ev '^\['`
+if ["$PUSH_IMAGE" = true];
+then
+  mvn deploy:deploy-file -DrepositoryId=nexus-release \
+                         -DgeneratePom=false \
+                         -Durl=http://nexusUrl/repository/dep-release-maven/ \
+                         -DpomFile=pom.xml
+                         -Dfile=target/${A_ID}-${A_VER}.${A_PACK} \
+                         -s ${MVN_SETTING}
+fi
+```
