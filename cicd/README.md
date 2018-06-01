@@ -204,7 +204,7 @@ maven help plugin을 사용하여 pom.xml에 정의 된 artifact 정보 사용 �
 ```
 
 mvn deploy 실행 예시  
-(Nexus 로그인을 설정 파일이 MVN_SETTING으로 jenkins에 등록되어 있어야 함)
+(Nexus 로그인 정보가 포함된 Global Maven 설정 파일이 MVN_SETTING으로 jenkins에 등록되어 있어 있는 경우의 예시코드)
 ```sh
 A_ID=`mvn help:evaluate -Dexpression="project.artifactId" 2> /dev/null | grep -Ev '^\['`
 A_VER=`mvn help:evaluate -Dexpression="project.version" 2> /dev/null | grep -Ev '^\['`
