@@ -1,78 +1,82 @@
-# CI/CD (Continuous Integration and Continuous Delivery)
+# CI/CD \(Continuous Integration and Continuous Delivery\)
+
 jenkins를 활용한 CICD구성에 대하여 설명한다.
 
 ## 1. Jenkins Plugins
+
 ### Build monitor
+
 빌드 상태를 모니터링 할 수 있는 뷰를 제공한다.  
 [Learn more](https://wiki.jenkins.io/display/JENKINS/Build+Monitor+Plugin)
 
-<img src="./images/buildMonitor.png" alt="drawing" style="width: 800px;"/>
+![drawing](.gitbook/assets/buildmonitor.png)
 
 ### PMD
+
 PMD 수행 결과 보고서 조회 및 트랜드 챠트를 조회 할 수 있다.  
 [Learn more](https://wiki.jenkins.io/display/JENKINS/PMD+Plugin)
 
-[PMD Trend]  
-<img src="./images/pmdTrend.png" alt="drawing" style="width: 400px;"/>
+\[PMD Trend\]  
+![drawing](.gitbook/assets/pmdtrend.png)
 
-[PMD Result]  
-<img src="./images/pmdResult.png" alt="drawing" style="width: 800px;"/>
+\[PMD Result\]  
+![drawing](.gitbook/assets/pmdresult.png)
 
-- 설정 방법  
-Jenkiks > Job > configure > Post-build Actions에서 Publish PMD analysis results 항목에 결과 파일명 지정
+* 설정 방법  
+
+  Jenkiks &gt; Job &gt; configure &gt; Post-build Actions에서 Publish PMD analysis results 항목에 결과 파일명 지정
 
 ### FindBugs
+
 FindBugs 수행 결과 보고서 조회 및 트랜드 챠트를 조회 할 수 있다.  
 [Learn more](https://wiki.jenkins.io/display/JENKINS/FindBugs+Plugin)
-- 설정 방법  
-Jenkiks > Job > configure > Post-build Actions에서 Publish FindBugs analysis results 항목에 결과 파일명 지정
+
+* 설정 방법  
+
+  Jenkiks &gt; Job &gt; configure &gt; Post-build Actions에서 Publish FindBugs analysis results 항목에 결과 파일명 지정
 
 ### Slack
+
 빌드 결과를 slack으로 전송할 수 있다.  
 [Learn more](https://wiki.jenkins.io/display/JENKINS/Slack+Plugin)
 
 ### Blue Ocean
-젠킨스의 개선된 UI를 사용가능하고, Pipeline을  단계별로 구성 할 수 있는 도구를 제공한다.   
+
+젠킨스의 개선된 UI를 사용가능하고, Pipeline을 단계별로 구성 할 수 있는 도구를 제공한다.  
 [Learn more](https://jenkins.io/projects/blueocean/)
 
 ## 2. Git Webhook
+
 Git 에서의 작업 조건을 트리거로 해서 빌드를 수행 한다.
-- 설정 방법  
- [Github]  
- <img src="./images/webHookGit.png" alt="drawing" style="width: 600px;"/>
 
- [Jenkins]  
- <img src="./images/webHookJob1.png" alt="drawing" style="width: 600px;"/>
+* 설정 방법  
+  \[Github\]  
+  ![drawing](.gitbook/assets/webhookgit.png)
 
- <img src="./images/webHookJob2.png" alt="drawing" style="width: 600px;"/>
+  \[Jenkins\]  
+  ![drawing](.gitbook/assets/webhookjob1.png)
+
+  ![drawing](.gitbook/assets/webhookjob2.png)
 
 ## 3. Pipeline
+
 젠킨스를 이용한 빌드파이프라인 구성이 가능하다.  
 각자의 프로젝트 상황에 맞는 단계로 파이프 라인을 구성 한다.
 
-(아래는 5개의 단계로 구성된 파이프라인 script 예시를 사용한다.)
-<img src="./images/pipeline.png" alt="drawing" style="width: 800px;"/>
-- Declarative: Tool install  
-빌드에 사용 될 Tool 지정
+\(아래는 5개의 단계로 구성된 파이프라인 script 예시를 사용한다.\) ![drawing](.gitbook/assets/pipeline.png)
 
-- Git checkout and Static analytics   
-Source 체크아웃 및 정적 분석 실행
-
-- Test and build  
-Test와 build 실행
-
-- Pact verify  
-Contract Test 수행(Pact Broker사용)
-
-- Dev deploy and create swagger docs  
-artifact를 배포 하고 API 관련 문서를 생성
+* Declarative: Tool install 빌드에 사용 될 Tool 지정
+* Git checkout and Static analytics Source 체크아웃 및 정적 분석 실행
+* Test and build Test와 build 실행
+* Pact verify Contract Test 수행\(Pact Broker사용\)
+* Dev deploy and create swagger docs artifact를 배포 하고 API 관련 문서를 생성
 
 > Pipeline 스크립트는 아래 메뉴에서 참고하고 생성 가능  
-Jenkins > job > pipeline syntext   
-
+> Jenkins &gt; job &gt; pipeline syntext
+>
 > 프로젝트 내에 Jenkinsfile 이라는 이름으로 스크립트 생성하여 사용할 수도 있다.
 
-```
+```text
     pipeline {
        tools{
            maven "M3"
@@ -144,18 +148,24 @@ Jenkins > job > pipeline syntext
      }
 ```
 
-## 4. Pact(Contract Test) / Nexus / Pact Broker
-Client Driven Test 로서 Client가 필요로 하는 API 항목에 대하여 Contract(Pact)를 생성하고, 이에 대한 Provider의 적합 여부를 Test 한다.
+## 4. Pact\(Contract Test\) / Nexus / Pact Broker
 
-<img src="./images/consumerPact.png" alt="drawing" style="width: 800px;"/>
+Client Driven Test 로서 Client가 필요로 하는 API 항목에 대하여 Contract\(Pact\)를 생성하고, 이에 대한 Provider의 적합 여부를 Test 한다.
 
-<img src="./images/providerPact.png" alt="drawing" style="width: 800px;"/>
+![drawing](.gitbook/assets/consumerpact.png)
+
+![drawing](.gitbook/assets/providerpact.png)
+
 ## 5. Ansible
-원격지 서버에 대하여 서비스 설치, 패키지 배포 등의 작업을 수행한다.   
+
+원격지 서버에 대하여 서비스 설치, 패키지 배포 등의 작업을 수행한다.  
 한번 정의 된 작업에 대하여 재사용이 용이하다.
+
 ### 대상 호스트 정의
+
 /etc/ansible/hosts
-```
+
+```text
 mail.example.com  
 
 [webservers]  
@@ -165,10 +175,12 @@ bar.example.com
 [dbservers]  
 one.example.com  
 two.example.com  
-three.example.com  
+three.example.com
 ```
-### Play book(작업들이 정의 된 파일)
-```
+
+### Play book\(작업들이 정의 된 파일\)
+
+```text
 - hosts: webservers
   vars:
     http_port: 80
@@ -185,18 +197,20 @@ three.example.com
     service: name=httpd state=started enabled=yes
   handlers:
     - name: restart apache
-      service: name=httpd state=restarted  
+      service: name=httpd state=restarted
 ```
 
 ### Ansible Galaxy
+
 Palybooks portal
 
 ## 5. Maven deploy to Nexux
-### maven help plugin
-maven help plugin을 사용하여 pom.xml에 정의 된 artifact 정보 사용 가능
-[자세히](https://maven.apache.org/plugins/maven-help-plugin/)  
 
-```xml
+### maven help plugin
+
+maven help plugin을 사용하여 pom.xml에 정의 된 artifact 정보 사용 가능 [자세히](https://maven.apache.org/plugins/maven-help-plugin/)
+
+```markup
 <plugin>
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-help-plugin</artifactId>
@@ -204,8 +218,9 @@ maven help plugin을 사용하여 pom.xml에 정의 된 artifact 정보 사용 �
 ```
 
 mvn deploy 실행 예시  
-(Nexus 로그인 정보가 포함된 Global Maven 설정 파일이 MVN_SETTING으로 jenkins에 등록되어 있어 있는 경우의 예시코드)
-```sh
+\(Nexus 로그인 정보가 포함된 Global Maven 설정 파일이 MVN\_SETTING으로 jenkins에 등록되어 있어 있는 경우의 예시코드\)
+
+```bash
 A_ID=`mvn help:evaluate -Dexpression="project.artifactId" 2> /dev/null | grep -Ev '^\['`
 A_VER=`mvn help:evaluate -Dexpression="project.version" 2> /dev/null | grep -Ev '^\['`
 A_PACK=`mvn help:evaluate -Dexpression="project.packaging" 2> /dev/null | grep -Ev '^\['`
@@ -219,3 +234,4 @@ then
                          -s ${MVN_SETTING}
 fi
 ```
+
