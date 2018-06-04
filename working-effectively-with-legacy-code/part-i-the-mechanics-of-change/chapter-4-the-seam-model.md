@@ -57,11 +57,11 @@
 
   };
 
-// source file void CAsyncSslRec::PostReceiveError\(UINT type, UINT errorcode\) { ::PostReceiveError\(type, errorcode\); }
+  // source file void CAsyncSslRec::PostReceiveError\(UINT type, UINT errorcode\) { ::PostReceiveError\(type, errorcode\); }
 
-// test file class TestingAsyncSslRec : public CAsyncSslRec { virtual void PostReceiveError\(UINT type, UINT errorcode\) { } };
+  // test file class TestingAsyncSslRec : public CAsyncSslRec { virtual void PostReceiveError\(UINT type, UINT errorcode\) { }}};
 
-```
+  ```
 
 * 전역 함수와 동일한 이름의 멤버 함수를 생성하고, 새로 생성한 함수에서 전역 함수를 호출한다. 테스트코드에서는 해당 멤버 함수를 구현하여 전역 함수 호출을 회피한다.
 * 이렇게 테스트 대상 함수의 원래 동작을 대체하여 의존성을 끊을수있는 부분을 Seam\(이음새\)라고 합니다.
