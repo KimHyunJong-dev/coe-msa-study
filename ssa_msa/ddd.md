@@ -9,3 +9,4 @@
 #### 서비스 간 트랜젝션 처리 : rollback은 없고 보상트랜젝션 처리 필요. transaction이 중요한다면 하나의 서비스로 묶어서 서비스 내 처리. Nosql일 경우 document내에서 트랜잭션 처리 가능
 
 #### Message Queue를 이용한 사례 : DB(ESB or EAI)x -> broker를 이용한 느슨한 결합. 실시간 분산은 zookeeper가. kafka는 stream processing에 집중. kafka 자원이 많이 필요
+
