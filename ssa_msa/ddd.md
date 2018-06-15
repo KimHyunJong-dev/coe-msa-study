@@ -10,3 +10,14 @@
 
 #### Message Queue를 이용한 사례 : DB(ESB or EAI)x -> broker를 이용한 느슨한 결합. 실시간 분산은 zookeeper가. kafka는 stream processing에 집중. kafka 자원이 많이 필요
 
+
+
+내부 개발 방법
+
+하나의 화면에서 여러 서비스 호출해서 데이터 aggregate할 경우. key mapping해주거나 여러번 호출하는 경우 생김
+join이 없기때문에 코드레벨에서 처리함. 
+-> 
+그래서 immutable데이터인 경우 메세지 전달해서 들고있게 함. 아니면 json 데이터를 한벌로 저장해놓고 처리. 
+DB가 아니라 서비스간 호출로 처리하는 코드레벨 확인 필요
+
+
