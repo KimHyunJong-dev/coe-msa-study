@@ -45,3 +45,33 @@ domain store - snapshot
 command에서 modify service에 version id param 
 
 youtube. building ms with event sourcing and CQRS
+
+
+
+
+
+
+
+
+1. 매카니즘과 도메인 - container(non functional)와 contents(functional)
+2. layer 6 - ui pre servicepub logic domain ra resource
+3. 무늬만 msa 
+4. uml 모델링 언어
+5. component 구성 - component i/f + logic + data access (저장소 x)
+6. domain
+7. repository의 역할
+8. 기본요소 - entity vo aggragate service (repository는 보완적)
+service 외부 i/f형태로 실행되는 로직
+utility/helper로직 
+9. entity 기본 i/f - uid, hashcode, equals
+10. vo - immutable (update 불가, 지우고 새로만들기)
+    vo는 다른 entity 참조할 수 있음(참조 - key를 가지고 있음)
+    entity가 vo를 참조x 가지고있음
+    vo는 vo 참조x (vo는 키가 없으니까)
+11. 도메인 객체 lifecycle : created archived    
+12. aggragate - aggragate root만 참조할 수 있음. vo는 참조대상x
+13. factory object
+14. 
+
+
+
