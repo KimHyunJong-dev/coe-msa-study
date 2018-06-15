@@ -24,11 +24,11 @@ DB가 아니라 서비스간 호출로 처리하는 코드레벨 확인 필요
 content 권한 관리. 
 custom annotation + aop 
 
-cqrs 
+cqrs (사용자가 가장 많은 서비스만 적용)
 update는 자주 일어나지 않고
 read 많은 경우. read 영역만 scale-out
 
-command area
+command area (기존 db개념이 command area에는 없어야함. only event log db)
 1. update REST
 2. query area에서 데이터 가져와서 변경 된 값으로 바꿔서 
 3. mq produce
