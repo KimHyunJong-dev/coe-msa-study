@@ -33,3 +33,15 @@ command area
 2. query area에서 데이터 가져와서 변경 된 값으로 바꿔서 
 3. mq produce
 4. query area에서 subscribe 후 다시 만들기
+
+command area block이 없음. 
+
+event를 통한 snapshot생성
+event store - log 
+domain store - snapshot
+
+-> lock을 안 걸기 때문에 변경 중인 상태에서 다시 업데이트 할 경우 reject 필요
+-> entity version으로 관리(업데이트할 때 버전을 가지고 가서 source랑 비교. 업데이트된 버전에 대해서 업데이트)
+command에서 modify service에 version id param 
+
+youtube. building ms with event sourcing and CQRS
