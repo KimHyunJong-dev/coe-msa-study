@@ -21,3 +21,15 @@ join이 없기때문에 코드레벨에서 처리함.
 DB가 아니라 서비스간 호출로 처리하는 코드레벨 확인 필요
 
 
+content 권한 관리. 
+custom annotation + aop 
+
+cqrs 
+update는 자주 일어나지 않고
+read 많은 경우. read 영역만 scale-out
+
+command area
+1. update REST
+2. query area에서 데이터 가져와서 변경 된 값으로 바꿔서 
+3. mq produce
+4. query area에서 subscribe 후 다시 만들기
