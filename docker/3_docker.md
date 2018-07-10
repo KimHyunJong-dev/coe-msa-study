@@ -16,6 +16,13 @@
 ## Docker 기반 기술
 - Namespace isolation : 리눅스 커널에서 implemented. 실행되는 프로세스가 사용하는 각각의 리소스를 보는 관점(different view of the system resources)을 제한한다. 분리된 네임스페이스를 사용하는 프로세스는 다른 프로세스의 리소스에 접근할 수 없다.  
  ** linux kernel : 시스템에 존재하는 자원을 효율적으로 관리하는 자원 관리자 (프로세서 관리, 프로세스 관리, 메모리 관리, 파일 시스템 관리, 네트워크 관리 등등)
-- Cgroup : 네임스페이스는 ㄱ
- ** linux kernel : 시스템에 존재하는 자원을 효율적으로 관리하는 자원 관리자 (프로세서 관리, 프로세스 관리, 메모리 관리, 파일 시스템 관리, 네트워크 관리 등등프
- ** linux kernel : 시스템에 존재하는 자원을 효율적으로 관리하는 자원 관리자 (프로세서 관리, 프로세스 관리, 메모리 관리, 파일 시스템 관리, 네트워크 관리 등등)
+ 도커 컨테이너를 실행할 떄 도커는 해당 컨테이너의 네임스페이스 셋을 생성한다. 이 네임스페이스들은 isolation을 제공하고 각각의 컨테이너는 분리된 네임스페이스에서 구동되며 다른 컨테이너의 네임스페이스로의 접근이 제한된다.
+ 도커엔진은 linux에 있는 다음의 네임스페이스를 사용한다. 
+  - pid namespace
+  - net namespace
+  - ipc namespace
+  - mnt namespace : filesystem mount points
+  - uts namespace : isolation kernel and version identifiers
+- Cgroup : 네임스페이스는 각 프로세스가 바라보는 리소스의 관점을 제공할 뿐 직접적으로 리소스의 사용을 제한하진 않는다. 
+Control-group(cgroup)은 커널의 부분으로 CPU, 메모리, disk I/O와 같은 리소스들을 제한한다. 각 컨테이너들에 가능한 메모리 자원을 제한한다.  
+
