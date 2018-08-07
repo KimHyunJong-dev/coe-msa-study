@@ -76,7 +76,7 @@ Git 에서의 작업 조건을 트리거로 해서 빌드를 수행 한다.
 >
 > 프로젝트 내에 Jenkinsfile 이라는 이름으로 스크립트 생성하여 사용할 수도 있다.
 
-```text
+```gradle
     pipeline {
        tools{
            maven "M3"
@@ -146,6 +146,59 @@ Git 에서의 작업 조건을 트리거로 해서 빌드를 수행 한다.
          }
        }
      }
+```
+
+### 3.1 pipeline with docker
+#### 절차
+
+```gradle
+pipeline {
+  agent {
+    docker {  // jenkins 호스트의 docker 컨테이너 내부에서 빌드를 수행하기 위해 docker agent를 지정(빌드 종료 시 컨테이너 삭제됨)
+      image 'common/jenkins-slave-jdk-maven-git-docker:0.1'
+      args '-v /maven-local-repository:/root/.m2/repository'
+      registryCredentialsId 'dockeruser'
+      registryUrl 'https://docker.sds-act.com'
+    } 
+  }
+  
+  environment {
+    registry = "docker.sds-act.com/leo-test"
+    registryCredential = 'dockeruser'
+    dockerImage = ''
+  }
+  
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git credentialsId: 'min0418', url: 'https://github.com/SDSACT/coe-eureka.git'
+      }
+    }      
+    stage('Build Project') {
+      steps {
+        script{
+            sh "mvn clean install -Dprofile=kube -DskipTests=true"
+        }
+      }
+    }          
+    stage('Building image') {
+      steps{
+        script {  // 빌드 결과물을 docker image로 build
+          dockerImage = docker.build registry + ":" + '${BUILD_NUMBER}'
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {  // image를 registry로 push
+          docker.withRegistry('https://docker.sds-act.com', 'dockeruser' ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }    
+  }
+}
 ```
 
 ## 4. Pact\(Contract Test\) / Nexus / Pact Broker
